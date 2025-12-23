@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { Message, ChatSession, WebhookPayload } from '@/types/chat';
 
-const WEBHOOK_URL = 'http://localhost:5678/webhook-test/b500ee1f-9729-4fc3-94fd-abe17011ea19';
+const WEBHOOK_URL = 'http://localhost:5678/webhook/b500ee1f-9729-4fc3-94fd-abe17011ea19';
 const USER_ID = 'user_001';
 
 export function useChat() {
@@ -96,10 +96,26 @@ export function useChat() {
 
       const data = await response.json();
       
+      // Extract plain text response from various possible formats
+      let responseText = '';
+      if (typeof data === 'string') {
+        responseText = data;
+      } else if (data.output) {
+        responseText = data.output;
+      } else if (data.message) {
+        responseText = data.message;
+      } else if (data.response) {
+        responseText = data.response;
+      } else if (data.text) {
+        responseText = data.text;
+      } else {
+        responseText = JSON.stringify(data);
+      }
+      
       const agentMessage: Message = {
         id: uuidv4(),
         role: 'agent',
-        content: typeof data === 'string' ? data : data.message || data.response || JSON.stringify(data),
+        content: responseText,
         timestamp: new Date(),
       };
 

@@ -1,12 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Sidebar } from '@/components/chat/Sidebar';
+import { ChatArea } from '@/components/chat/ChatArea';
+import { useChat } from '@/hooks/useChat';
 
 const Index = () => {
+  const {
+    sessions,
+    activeSession,
+    activeSessionId,
+    setActiveSessionId,
+    isLoading,
+    sendMessage,
+    createNewSession,
+    deleteSession,
+  } = useChat();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="flex h-screen w-full overflow-hidden bg-background">
+      {/* Sidebar */}
+      <Sidebar
+        sessions={sessions}
+        activeSessionId={activeSessionId}
+        onSelectSession={setActiveSessionId}
+        onNewChat={createNewSession}
+        onDeleteSession={deleteSession}
+      />
+
+      {/* Main Chat Area */}
+      <main className="flex-1 overflow-hidden">
+        <ChatArea
+          session={activeSession}
+          isLoading={isLoading}
+          onSendMessage={sendMessage}
+        />
+      </main>
     </div>
   );
 };

@@ -18,15 +18,15 @@ export function Sidebar({
   onDeleteSession,
 }: SidebarProps) {
   return (
-    <aside className="flex h-full w-[260px] flex-col bg-sidebar border-r border-sidebar-border">
+    <aside className="flex h-full w-[260px] flex-col bg-sidebar">
       {/* New Chat Button */}
-      <div className="p-3">
+      <div className="p-2 pt-3">
         <button
           onClick={onNewChat}
-          className="flex w-full items-center gap-3 rounded-lg border border-border px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-sidebar-accent"
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent"
         >
-          <Plus className="h-4 w-4" />
-          New chat
+          <MessageSquare className="h-4 w-4" />
+          New conversation
         </button>
       </div>
 

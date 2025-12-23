@@ -22,9 +22,9 @@ export function ChatArea({ session, isLoading, onSendMessage }: ChatAreaProps) {
   const hasMessages = session.messages.length > 0;
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col bg-background">
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto scrollbar-thin">
+      <div className="flex-1 overflow-y-auto scrollbar-thin bg-background">
         {hasMessages ? (
           <div className="pb-4">
             {session.messages.map((message) => (
@@ -36,15 +36,12 @@ export function ChatArea({ session, isLoading, onSendMessage }: ChatAreaProps) {
         ) : (
           /* Empty State */
           <div className="flex h-full flex-col items-center justify-center px-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted mb-6">
-              <Bot className="h-8 w-8 text-muted-foreground" />
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 mb-5">
+              <Bot className="h-7 w-7 text-white" />
             </div>
             <h1 className="text-2xl font-semibold text-foreground mb-2">
               How can I help you today?
             </h1>
-            <p className="text-muted-foreground text-center max-w-md">
-              I'm your self-learning AI agent. Ask me anything and I'll do my best to assist you.
-            </p>
           </div>
         )}
       </div>

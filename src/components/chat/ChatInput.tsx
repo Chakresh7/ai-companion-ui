@@ -37,30 +37,30 @@ export function ChatInput({ onSend, isLoading }: ChatInputProps) {
   };
 
   return (
-    <div className="border-t border-border bg-background px-4 py-4">
+    <div className="bg-background px-4 py-4 pb-6">
       <div className="mx-auto max-w-3xl">
-        <div className="relative flex items-end gap-3 rounded-xl border border-border bg-muted/50 px-4 py-3 focus-within:border-muted-foreground/50 transition-colors">
+        <div className="relative flex items-end gap-2 rounded-2xl border border-border bg-secondary px-4 py-3 shadow-sm focus-within:border-muted-foreground/40 transition-colors">
           <textarea
             ref={textareaRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Send a message..."
+            placeholder="Message ChatGPT"
             disabled={isLoading}
             rows={1}
-            className="flex-1 resize-none bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none disabled:opacity-50 text-sm leading-relaxed max-h-[200px] scrollbar-thin"
+            className="flex-1 resize-none bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none disabled:opacity-50 text-[15px] leading-relaxed max-h-[200px] scrollbar-thin py-0.5"
           />
           <button
             onClick={handleSubmit}
             disabled={!input.trim() || isLoading}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:bg-foreground/90 disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed"
             aria-label="Send message"
           >
             <Send className="h-4 w-4" />
           </button>
         </div>
-        <p className="mt-2 text-center text-xs text-muted-foreground">
-          AI Agent may produce inaccurate information. Verify important details.
+        <p className="mt-3 text-center text-xs text-muted-foreground">
+          ChatGPT can make mistakes. Check important info.
         </p>
       </div>
     </div>

@@ -15,7 +15,7 @@ const Index = () => {
   } = useChat();
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-background">
+    <div className="flex h-screen w-full overflow-hidden">
       {/* Sidebar */}
       <Sidebar
         sessions={sessions}
